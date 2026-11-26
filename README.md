@@ -4,7 +4,7 @@ Landing pública de Nido. Proyecto independiente: no modifica el repositorio ni 
 
 - HTML, CSS y JS estáticos, sin build. Se publica tal cual en GitHub Pages (o Vercel/Netlify).
 - Fuentes autohospedadas (`assets/fonts`, Fraunces e Inter, licencia SIL OFL).
-- Capturas reales de la app en `assets/app` (WebP, 1440 y 2400 px), con una cursada **ficticia** (Lucía, Diseño Gráfico). Ningún dato es de una persona real.
+- Capturas reales de la app en `assets/app` (WebP, 1600, 2560 y 3840 px), con una cursada **ficticia** (Martina en español, Emma en inglés y Beatriz en portugués; Diseño Gráfico). Ningún dato es de una persona real.
 
 ## Descarga para Windows
 

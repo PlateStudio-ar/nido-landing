@@ -135,7 +135,6 @@ S = {
         ("Placing key elements on the lines that split the image into thirds.", "Posicionar os elementos importantes nas linhas que dividem a imagem em três."),
     "Opinion essay: linker para contrastar": ("Linkers to contrast ideas", "Opinion essay: conector para contrastar"),
     "However / On the other hand / Nevertheless.": ("Cependant / En revanche / Néanmoins.", "However / On the other hand / Nevertheless."),
-    "Lucía": ("Lucía", "Lucía"),
 }
 
 

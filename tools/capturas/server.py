@@ -1,7 +1,7 @@
 """Backend falso de Nido, solo en localhost, para sacar capturas de la landing.
 
 Imita lo mínimo de Supabase (PostgREST + GoTrue) que usa la app y devuelve una cursada
-ficticia ("Lucía", Arquitectura). No se conecta a ningún servicio real.
+ficticia (Martina / Emma / Beatriz según idioma, Diseño Gráfico). No se conecta a ningún servicio real.
 """
 import json
 import re
@@ -11,6 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qsl, urlparse
 
 UID = "00000000-0000-4000-8000-00000000a11a"
+NAME = {"es": "Martina", "en": "Emma", "pt": "Beatriz"}.get(sys.argv[3] if len(sys.argv) > 3 else "es", "Martina")
 TODAY = date.fromisoformat(sys.argv[2]) if len(sys.argv) > 2 else date.today()
 
 
@@ -45,7 +46,7 @@ NOTE_ROMANICO = """
 """
 
 DATA = {
-    "profiles": [{"id": UID, "display_name": "Lucía", "plan": "pro", "new_cards_per_day": 20}],
+    "profiles": [{"id": UID, "display_name": NAME, "plan": "pro", "new_cards_per_day": 20}],
     "programs": [
         {"id": 1, "name": "Diseño Gráfico", "kind": "carrera", "years": 4, "position": 0},
         {"id": 2, "name": "Cursos", "kind": "cursos", "years": None, "position": 1},
@@ -281,8 +282,8 @@ def b64(obj):
     return base64.urlsafe_b64encode(json.dumps(obj).encode()).decode().rstrip("=")
 
 
-USER = {"id": UID, "aud": "authenticated", "role": "authenticated", "email": "lucia@ejemplo.com",
-        "email_confirmed_at": CREATED, "app_metadata": {"provider": "email"}, "user_metadata": {"display_name": "Lucía"},
+USER = {"id": UID, "aud": "authenticated", "role": "authenticated", "email": NAME.lower() + "@ejemplo.com",
+        "email_confirmed_at": CREATED, "app_metadata": {"provider": "email"}, "user_metadata": {"display_name": NAME},
         "created_at": CREATED, "updated_at": CREATED}
 TOKEN = b64({"alg": "HS256", "typ": "JWT"}) + "." + b64({"sub": UID, "exp": 4102444800, "role": "authenticated", "aud": "authenticated", "email": USER["email"]}) + ".demo"
 SESSION = {"access_token": TOKEN, "token_type": "bearer", "expires_in": 3600, "expires_at": 4102444800, "refresh_token": "demo-refresh", "user": USER}
