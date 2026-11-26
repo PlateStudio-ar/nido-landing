@@ -98,7 +98,7 @@ window.NIDO_I18N = {
     "alt.noche": "Nido's Home in dark mode: “Good evening, Lucía” with the moon",
     "dl.eyebrow": "Download",
     "dl.title": "Install Nido<br /><em>and start today.</em>",
-    "dl.lead": "The desktop app is for Windows. On Mac, Nido works fully in your browser, with the same account.",
+    "dl.lead": "The desktop app is for Windows. On Mac, Nido works fully in your browser, with the same account. Inside, the app is in Spanish for now: English is coming soon.",
     "dl.win.t": "Nido for Windows",
     "dl.win.d": "Windows 10 and 11 · 64-bit · Free",
     "cta.win": "Download for Windows",
@@ -154,7 +154,7 @@ window.NIDO_I18N = {
     "foot.faq": "Questions",
     "foot.use": "Use Nido",
     "foot.lang": "Language",
-    "foot.note": "Screenshots use a sample semester: no data belongs to a real person. The app is in Spanish; more languages are on the way.",
+    "foot.note": "Screenshots use a sample semester: no data belongs to a real person. The app is in Spanish for now; English is on the way.",
   },
 
   pt: {
@@ -253,7 +253,7 @@ window.NIDO_I18N = {
     "alt.noche": "Início do Nido no modo escuro: «Boa noite, Lucía» com a lua",
     "dl.eyebrow": "Baixar",
     "dl.title": "Instale o Nido<br /><em>e comece hoje.</em>",
-    "dl.lead": "O app para computador é para Windows. No Mac, o Nido funciona completo no navegador, com a mesma conta.",
+    "dl.lead": "O app para computador é para Windows. No Mac, o Nido funciona completo no navegador, com a mesma conta. Por dentro, o app ainda está em espanhol: o português chega em breve.",
     "dl.win.t": "Nido para Windows",
     "dl.win.d": "Windows 10 e 11 · 64 bits · Grátis",
     "cta.win": "Baixar para Windows",
@@ -309,7 +309,7 @@ window.NIDO_I18N = {
     "foot.faq": "Perguntas",
     "foot.use": "Usar o Nido",
     "foot.lang": "Idioma",
-    "foot.note": "As capturas usam um semestre de exemplo: nenhum dado pertence a uma pessoa real. O app está em espanhol; outros idiomas estão a caminho.",
+    "foot.note": "As capturas usam um semestre de exemplo: nenhum dado pertence a uma pessoa real. Por enquanto o app está em espanhol; o português está a caminho.",
   },
 
   /* Textos que arma main.js (botones según plataforma, leyendas del recorrido). */
@@ -382,6 +382,13 @@ window.NIDO_I18N = {
     if (!lang) lang = "en";
   }
   window.NIDO_LANG = lang;
+  // Capturas de la app en el idioma de la página: precargamos la del inicio que corresponde.
+  const dir = lang === "es" ? "assets/app/" : `assets/app/${lang}/`;
+  const pre = document.createElement("link");
+  pre.rel = "preload"; pre.as = "image"; pre.href = `${dir}inicio-claro-1600.webp`;
+  pre.setAttribute("imagesrcset", ["1600", "2560", "3840"].map((w) => `${dir}inicio-claro-${w}.webp ${w}w`).join(", "));
+  pre.setAttribute("imagesizes", "(min-width: 1240px) 1180px, 94vw");
+  document.head.appendChild(pre);
   if (lang !== "es") {
     const root = document.documentElement;
     root.classList.add("lang-wait");

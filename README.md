@@ -38,6 +38,11 @@ VITE_SUPABASE_URL=http://localhost:54321 VITE_SUPABASE_ANON_KEY=demo npx vite --
 python3 tools/capturas/appshot.py salida.png --theme light --time 09:10   # Chrome con --remote-debugging-port=9333
 ```
 
+Para inglés y portugués: `python3 tools/capturas/server.py 54321 2026-11-26 en` (datos de ejemplo traducidos)
+y `python3 tools/capturas/shots_i18n.py en assets-salida/`. La interfaz se traduce solo en el navegador de captura
+(`tr.js`): la app no cambia. Las capturas de cada idioma van en `assets/app/en/` y `assets/app/pt/`.
+Cuando la app tenga su propia traducción, conviene volver a sacarlas sin `tr.js`.
+
 Las capturas se sacan a 3x (3840 px de ancho) y se publican en WebP a 1600, 2560 y 3840 px.
 
 Ningún dato sale de la máquina: no se usa Supabase ni ninguna cuenta real.

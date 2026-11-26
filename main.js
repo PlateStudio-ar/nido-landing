@@ -68,6 +68,9 @@
     document.querySelectorAll(`[${data}]`).forEach((el) => attrEls.push({ el, attr, key: el.getAttribute(data), es: el.getAttribute(attr) }));
   });
   const titleEs = document.title;
+  // Capturas de la app: cada idioma tiene las suyas en assets/app/<idioma>/.
+  const shotsImgs = [...document.querySelectorAll('img[src*="assets/app/"]')].map((el) => ({ el, src: el.getAttribute("src"), srcset: el.getAttribute("srcset") }));
+  const shotPath = (v, l) => (v && l !== "es" ? v.replace(/assets\/app\//g, `assets/app/${l}/`) : v);
 
   const applyLang = (next, persist) => {
     lang = DICT[next] || next === "es" ? next : "es";
@@ -78,6 +81,11 @@
     });
     attrEls.forEach(({ el, attr, key, es }) => el.setAttribute(attr, d && d[key] != null ? d[key] : es));
     document.title = d && d["meta.title"] ? d["meta.title"] : titleEs;
+    shotsImgs.forEach(({ el, src, srcset }) => {
+      const nsrc = shotPath(src, lang), nset = shotPath(srcset, lang);
+      if (srcset && el.getAttribute("srcset") !== nset) el.setAttribute("srcset", nset);
+      if (el.getAttribute("src") !== nsrc) el.setAttribute("src", nsrc);
+    });
     document.documentElement.lang = HTML_LANG[lang];
     document.querySelectorAll("[data-lang-current]").forEach((el) => (el.textContent = lang.toUpperCase()));
     document.querySelectorAll("[data-set-lang]").forEach((b) => {

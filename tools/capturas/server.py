@@ -142,6 +142,11 @@ DATA = {
     "account_deletion_requests": [],
 }
 
+LANG = sys.argv[3] if len(sys.argv) > 3 else "es"
+if LANG != "es":
+    from data_i18n import translate
+    DATA = translate(DATA, LANG, NOTE_ROMANICO)
+
 OPS = {
     "eq": lambda a, b: str(a).lower() == b.lower() if isinstance(a, bool) else str(a) == b,
     "neq": lambda a, b: str(a) != b,
