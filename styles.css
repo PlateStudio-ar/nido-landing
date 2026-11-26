@@ -28,3 +28,8 @@
 @media(min-width:1100px){.chapter{margin-block:130px}.chapter figure{transform:rotate(2deg);box-shadow:8px 12px 0 #e8d7c0}.intro h1{font-size:clamp(72px,7vw,100px)}}
 @media(max-width:900px){.paper{width:105px}.wheel{left:-36px}.tint{right:-38px}.pencil{left:4%;height:90px}.clip{display:none}}
 @media(max-width:600px){.intro{padding-top:30px}.intro h1:before{height:44px;margin-bottom:20px}.studio{height:106px}.paper{width:71px}.wheel{left:0;top:12%}.tint{right:0;bottom:0}.paper span,.pencil{display:none}.intro h1{position:relative}.chapter figure{box-shadow:4px 7px 0 #e8d7c0}}
+/* Keep ink and screenshots readable throughout each entrance. */
+.intro{animation:none}
+@keyframes arrive{from{transform:translateY(6px)}to{transform:none}}
+@keyframes lift{from{translate:0 16px}to{translate:0 0}}
+@media(max-width:600px){.studio{height:68px}.paper{width:56px}.wheel{left:6%;top:0}.tint{right:6%;top:0}}
