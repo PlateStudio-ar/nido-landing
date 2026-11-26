@@ -18,8 +18,15 @@ Para que funcione hay que crear un *release* en este repo y subir el instalador 
 `Nido-Setup.exe`. Cada release nuevo reemplaza al anterior sin tocar la landing.
 La URL se cambia en un solo lugar: el atributo `data-download` del `<body>` en `index.html`.
 
-La landing detecta la plataforma: en Windows el botón principal descarga; en Mac, iPhone, iPad y Android
-el botón principal abre la versión web.
+La landing detecta la plataforma: en Windows el botón principal descarga; en Mac abre la versión web.
+En el celu todavía no se muestra la versión móvil: el botón lleva a la sección de descarga.
+
+## Idiomas
+
+Español (en el HTML), inglés y portugués (en `i18n.js`). Cada texto traducible lleva `data-i18n="clave"`
+(o `data-i18n-alt`, `data-i18n-aria`, `data-i18n-content`). El idioma se elige con `?lang=es|en|pt`,
+después con lo que la persona eligió antes y si no, con el idioma del navegador (inglés si no es es/pt).
+Al agregar un texto nuevo, sumá su clave en `en` y en `pt`.
 
 ## Regenerar las capturas
 
@@ -30,5 +37,7 @@ python3 tools/capturas/server.py 54321 2026-11-26          # backend falso
 VITE_SUPABASE_URL=http://localhost:54321 VITE_SUPABASE_ANON_KEY=demo npx vite --port 1420   # en el repo nido
 python3 tools/capturas/appshot.py salida.png --theme light --time 09:10   # Chrome con --remote-debugging-port=9333
 ```
+
+Las capturas se sacan a 3x (3840 px de ancho) y se publican en WebP a 1600, 2560 y 3840 px.
 
 Ningún dato sale de la máquina: no se usa Supabase ni ninguna cuenta real.

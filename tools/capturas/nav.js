@@ -15,3 +15,5 @@ window.__scroll = (y) => { const m = [...document.querySelectorAll('main, [class
 'loaded2';
 window.__tab = (text) => { const np = [...document.querySelectorAll('button')].find(b => /Nueva página/.test(b.innerText)); if (!np) return 'no tabs'; let c = np.parentElement; while (c && ![...c.querySelectorAll('button')].some(b => b.innerText.trim() === text)) c = c.parentElement; const b = c && [...c.querySelectorAll('button')].find(b => b.innerText.trim() === text); if (!b) return 'no tab'; b.click(); return 'tab ok'; };
 'loaded3';
+window.__scroll = (y) => { const c = [...document.querySelectorAll('*')].filter(e => { const s = getComputedStyle(e); return /(auto|scroll)/.test(s.overflowY) && e.scrollHeight > e.clientHeight + 50; }).sort((a, b) => b.clientWidth - a.clientWidth)[0]; (c || document.scrollingElement).scrollTo(0, y); return 'scrolled ' + (c ? c.tagName + ' w' + c.clientWidth : 'doc'); };
+'loaded4';

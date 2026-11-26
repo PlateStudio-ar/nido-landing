@@ -21,29 +21,112 @@
     if (use) use.setAttribute("href", id);
   };
 
-  document.querySelectorAll("[data-primary]").forEach((btn) => {
-    const label = btn.querySelector("[data-primary-label]");
-    const inNav = btn.closest(".nav");
-    const inPlan = btn.closest(".plan");
-    if (isWindows) {
-      btn.href = DOWNLOAD;
-      if (label && inNav) label.textContent = "Descargar";
-    } else {
-      btn.href = WEB;
-      setIcon(btn, "#i-globe");
-      if (label) label.textContent = inNav ? "Abrir Nido" : inPlan ? "Empezar gratis" : "Usar Nido en la web";
-    }
-  });
+  const T = (window.NIDO_I18N && window.NIDO_I18N.js) || {};
+  let lang = window.NIDO_LANG || "es";
+  const t = (k) => (T[lang] && T[lang][k]) || (T.es && T.es[k]) || "";
 
-  if (!isWindows) {
+  /* Botones según plataforma, en el idioma actual. */
+  const paintPlatform = () => {
+    document.querySelectorAll("[data-primary]").forEach((btn) => {
+      const label = btn.querySelector("[data-primary-label]");
+      const inNav = btn.closest(".nav");
+      const inPlan = btn.closest(".plan");
+      if (isWindows) {
+        btn.href = DOWNLOAD;
+        if (label) label.textContent = inNav ? t("dl") : inPlan ? t("freeDl") : t("win");
+      } else if (isMobile) {
+        // En el celu todavía no mostramos la versión móvil: explicamos cómo bajarla en la compu.
+        btn.href = "#descargar";
+        if (label) label.textContent = inNav ? t("dl") : inPlan ? t("freeWeb") : t("seeDl");
+      } else {
+        btn.href = WEB;
+        setIcon(btn, "#i-globe");
+        if (label) label.textContent = inNav ? t("open") : inPlan ? t("freeWeb") : t("webMain");
+      }
+    });
     document.querySelectorAll("[data-secondary]").forEach((btn) => {
-      btn.href = "#descargar";
       const label = btn.querySelector("[data-secondary-label]");
-      if (label) label.textContent = "¿Usás Windows? Descargalo";
+      if (isWindows || isMobile) {
+        btn.href = WEB;
+        if (label) label.textContent = t("web");
+      } else {
+        btn.href = "#descargar";
+        if (label) label.textContent = t("winAsk");
+      }
     });
     const note = document.querySelector("[data-platform-note]");
-    if (note) note.textContent = isMobile ? "Gratis · Funciona en el navegador del celu · Agregalo a tu pantalla de inicio" : "Gratis · En Mac, iPhone y Android, desde el navegador · App para Windows 10 y 11";
+    if (note) note.textContent = isWindows ? t("noteWin") : isMobile ? t("noteMobile") : t("noteMac");
+  };
+
+  /* ───────────── Idiomas ───────────── */
+  const DICT = window.NIDO_I18N || {};
+  const HTML_LANG = { es: "es-AR", en: "en", pt: "pt-BR" };
+  const ATTRS = [["data-i18n-alt", "alt"], ["data-i18n-aria", "aria-label"], ["data-i18n-content", "content"]];
+  const textEls = [...document.querySelectorAll("[data-i18n]")].map((el) => ({ el, key: el.dataset.i18n, es: el.innerHTML }));
+  const attrEls = [];
+  ATTRS.forEach(([data, attr]) => {
+    document.querySelectorAll(`[${data}]`).forEach((el) => attrEls.push({ el, attr, key: el.getAttribute(data), es: el.getAttribute(attr) }));
+  });
+  const titleEs = document.title;
+
+  const applyLang = (next, persist) => {
+    lang = DICT[next] || next === "es" ? next : "es";
+    const d = lang === "es" ? null : DICT[lang];
+    textEls.forEach(({ el, key, es }) => {
+      const v = d && d[key] != null ? d[key] : es;
+      if (el.innerHTML !== v) el.innerHTML = v;
+    });
+    attrEls.forEach(({ el, attr, key, es }) => el.setAttribute(attr, d && d[key] != null ? d[key] : es));
+    document.title = d && d["meta.title"] ? d["meta.title"] : titleEs;
+    document.documentElement.lang = HTML_LANG[lang];
+    document.querySelectorAll("[data-lang-current]").forEach((el) => (el.textContent = lang.toUpperCase()));
+    document.querySelectorAll("[data-set-lang]").forEach((b) => {
+      const on = b.dataset.setLang === lang;
+      if (b.getAttribute("role") === "menuitemradio") b.setAttribute("aria-checked", String(on));
+      else b.setAttribute("aria-pressed", String(on));
+    });
+    paintPlatform();
+    if (typeof paintCaption === "function") paintCaption();
+    if (persist) {
+      try { localStorage.setItem("nido-landing-lang", lang); } catch (e) {}
+      try {
+        const u = new URL(location.href);
+        if (u.searchParams.has("lang")) { u.searchParams.set("lang", lang); history.replaceState(null, "", u); }
+      } catch (e) {}
+    }
+    document.documentElement.classList.remove("lang-wait");
+  };
+
+  /* Menú de idioma del nav */
+  const menu = document.querySelector("[data-lang-menu]");
+  if (menu) {
+    const btn = menu.querySelector(".lang-btn");
+    const list = menu.querySelector(".lang-list");
+    const items = [...list.querySelectorAll("button")];
+    const open = (focusItem) => {
+      list.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      if (focusItem) (items.find((i) => i.dataset.setLang === lang) || items[0]).focus();
+    };
+    const close = (focusBtn) => {
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      if (focusBtn) btn.focus();
+    };
+    btn.addEventListener("click", () => (list.hidden ? open(false) : close(false)));
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") { e.preventDefault(); open(true); }
+    });
+    list.addEventListener("keydown", (e) => {
+      const i = items.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      if (e.key === "Escape" || e.key === "Tab") close(e.key === "Escape");
+    });
+    document.addEventListener("pointerdown", (e) => { if (!menu.contains(e.target)) close(false); });
+    items.forEach((it) => it.addEventListener("click", () => close(true)));
   }
+  document.querySelectorAll("[data-set-lang]").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.setLang, true)));
 
   /* ───────────── Navegación: fondo al scrollear ───────────── */
   const nav = document.getElementById("nav");
@@ -105,13 +188,6 @@
   }
 
   /* ───────────── Recorrido con pestañas ───────────── */
-  const CAPTIONS = [
-    ["Materias", "Cada materia con su portada, su horario, su plan hacia el parcial y todo su material."],
-    ["Apuntes", "Apuntes por unidad con títulos, listas, tablas e imágenes. Se guardan solos mientras escribís."],
-    ["Calendario", "Tus clases y tus entregas en la misma semana, con la hora de ahora marcada."],
-    ["Fichas", "Repaso espaciado: elegís cómo te fue y Nido te dice cuándo vuelve cada ficha."],
-    ["Sesiones", "Arrancás una sesión de 10 a 45 minutos y el temporizador te acompaña por toda la app."],
-  ];
   const tablist = document.querySelector(".tour-tabs");
   const tabs = tablist ? [...tablist.querySelectorAll('[role="tab"]')] : [];
   const shots = [...document.querySelectorAll(".tour-stack img")];
@@ -143,11 +219,17 @@
     const next = shots[(current + 1) % shots.length];
     if (next) next.loading = "eager";
     panel.setAttribute("aria-labelledby", tabs[current].id);
-    capTitle.textContent = CAPTIONS[current][0];
-    capText.textContent = CAPTIONS[current][1];
+    paintCaption();
     if (focus) tabs[current].focus();
     syncPause();
   };
+
+  function paintCaption() {
+    const caps = (T[lang] && T[lang].caps) || (T.es && T.es.caps);
+    if (!caps || !capTitle) return;
+    capTitle.textContent = caps[current][0];
+    capText.textContent = caps[current][1];
+  }
 
   const syncPause = () => tablist && tablist.classList.toggle("is-paused", !visible || hovering || document.hidden);
 
@@ -175,6 +257,8 @@
     }
     select(0);
   }
+
+  applyLang(lang, false);
 
   /* ───────────── Cielo nocturno ───────────── */
   const sky = document.querySelector(".stars");
