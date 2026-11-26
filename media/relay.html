@@ -10,10 +10,11 @@
   const ok = ["https://www.instagram.com", "https://www.tiktok.com", "https://studio.youtube.com"];
   const q = new URLSearchParams(location.search);
   const src = q.get("src"), to = q.get("to");
-  if (!window.opener || !ok.includes(to) || !/^[\w.-]+$/.test(src || "")) { document.body.textContent = "no"; return; }
+  const target = window.opener || (window.parent !== window ? window.parent : null);
+  if (!target || !ok.includes(to) || !/^[\w.-]+$/.test(src || "")) { document.body.textContent = "no"; return; }
   const r = await fetch(src, { cache: "no-store" });
   const buf = await r.arrayBuffer();
-  window.opener.postMessage({ nidoMedia: true, name: src, type: r.headers.get("content-type"), buf }, to, [buf]);
+  target.postMessage({ nidoMedia: true, name: src, type: r.headers.get("content-type"), buf }, to, [buf]);
   document.body.textContent = "ok " + buf.byteLength;
   setTimeout(() => window.close(), 1500);
 })();
