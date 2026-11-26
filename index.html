@@ -6,116 +6,416 @@
     <title>Nido · Donde crece lo que aprendés</title>
     <meta
       name="description"
-      content="Organizá la cursada, prepará tus parciales y repasá a tu ritmo con Nido."
+      content="Nido reúne tus materias, apuntes, entregas, parciales y sesiones de estudio en un solo lugar. Gratis, en el navegador."
     />
+    <meta name="theme-color" content="#fdfcfa" />
+    <meta property="og:title" content="Nido · Donde crece lo que aprendés" />
+    <meta
+      property="og:description"
+      content="Materias, apuntes, entregas, parciales y repaso en un solo lugar."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/inicio.png" />
     <link rel="icon" href="assets/nido.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <a class="brand" href="#inicio"
-        ><img src="assets/nido.png" alt="" />nido</a
-      >
-      <nav><a href="#recorrido">Recorrido</a><a href="#repaso">Repaso</a></nav>
-      <a class="button" href="https://nido-rho-gules.vercel.app/"
-        >Abrir Nido ↗</a
-      >
+    <a class="skip" href="#inicio">Saltar al contenido</a>
+
+    <header class="site-head">
+      <a class="brand" href="#inicio">
+        <svg class="petals" viewBox="0 0 120 120" aria-hidden="true">
+          <ellipse cx="32" cy="82" rx="14" ry="20" transform="rotate(-24 32 82)" fill="#D4969B" />
+          <ellipse cx="58" cy="68" rx="16" ry="29" transform="rotate(-16 58 68)" fill="#A2A6CA" />
+          <ellipse cx="88" cy="58" rx="18" ry="39" transform="rotate(-10 88 58)" fill="#E5D7BD" />
+        </svg>
+        <span>nido</span>
+      </a>
+      <nav aria-label="Secciones">
+        <a href="#recorrido">Recorrido</a>
+        <a href="#materias">Materias</a>
+        <a href="#agenda">Calendario</a>
+        <a href="#estudio">Estudio</a>
+      </nav>
+      <div class="head-actions">
+        <button id="mode" class="icon-button" type="button" aria-pressed="false">
+          <span class="visually-hidden">Cambiar a modo oscuro</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              class="moon"
+              d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <g class="sun" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" />
+            </g>
+          </svg>
+        </button>
+        <a class="button" href="https://nido-rho-gules.vercel.app/">Abrir Nido</a>
+      </div>
     </header>
+
     <main id="inicio">
-      <section class="intro">
-        <div class="studio" aria-hidden="true">
-          <div class="paper wheel"><i></i><span>Estudio de color</span></div>
-          <div class="pencil"></div>
-          <div class="paper tint">
-            <i></i><i></i><i></i><span>Gouache sobre papel</span>
+      <!-- ───────────────────────── Hero ───────────────────────── -->
+      <section class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Para estudiantes · gratis en la web</p>
+          <h1>Donde crece<br /><em>lo que aprendés.</em></h1>
+          <p class="lead">
+            Tus materias, tus apuntes y la fecha del próximo parcial, en un solo lugar.
+            Abrí Nido y ya sabés por dónde seguir.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://nido-rho-gules.vercel.app/">Empezar gratis</a>
+            <a class="button ghost" href="#recorrido">Ver el recorrido</a>
           </div>
-          <div class="clip"></div>
+          <p class="note">Sin instalar nada · funciona en compu y celular · tus datos sincronizados</p>
         </div>
-        <h1>Donde crece<br /><em>lo que aprendés.</em></h1>
-        <p>
-          Tus apuntes, tus clases y un plan para el próximo parcial.<br />
-          Un lugar al que volver cada vez que te sentás a estudiar.
-        </p>
-        <a class="button" href="https://nido-rho-gules.vercel.app/"
-          >Empezar en la web ↗</a
-        >
-      </section>
-      <section id="recorrido" aria-label="Recorrido por la aplicación">
-        <div class="stage">
-          <div class="toolbar">
-            <div class="options" aria-label="Elegir pantalla">
-              <button data-view="inicio" aria-pressed="true">Inicio</button
-              ><button data-view="materia" aria-pressed="false">Materia</button
-              ><button data-view="semana" aria-pressed="false">
-                Calendario
-              </button>
-            </div>
-            <button id="theme" aria-pressed="false">Ver oscuro</button>
-          </div>
-          <a
-            id="zoom"
-            href="assets/inicio.png"
-            aria-label="Abrir captura a tamaño completo"
-            ><img
-              id="screen"
+
+        <figure class="hero-shot">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="frame">
+            <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img
+              src="assets/inicio.png"
               width="1360"
               height="860"
-              src="assets/inicio.png"
-              alt="Inicio de Nido con una sugerencia de estudio, clases y tareas"
-          /></a>
-        </div>
-        <div class="caption">
-          <span id="description" aria-live="polite"
-            >Inicio · Una sugerencia concreta para empezar a estudiar.</span
-          ><small>Capturas de Nido con datos de ejemplo</small>
-        </div>
-      </section>
-      <section class="chapter">
-        <div>
-          <h2>De la cursada<br /><em>al parcial.</em></h2>
-          <p>
-            Abrí una materia y tenés a mano los apuntes, los archivos y las
-            unidades que entran en el examen. Marcá lo que ya estudiaste para
-            saber por dónde seguir.
-          </p>
-        </div>
-        <figure>
-          <img
-            src="assets/materia.png"
-            alt="Materia Teoría del color en Nido"
-            loading="lazy"
-          />
-          <figcaption>Teoría del color · Vista de materia</figcaption>
+              alt="Pantalla de Inicio de Nido: saludo del día, una sugerencia para empezar a estudiar, clases y próximas entregas"
+              fetchpriority="high"
+            />
+          </div>
         </figure>
       </section>
-      <section class="practice" id="repaso">
-        <div>
-          <h2>¿Te acordás<br /><em>sin mirar?</em></h2>
-          <p>
-            Las fichas de Nido vuelven a aparecer según cómo te fue en el
-            repaso. Probá dar vuelta esta ficha de ejemplo.
+
+      <!-- ─────────────────────── Capacidades ─────────────────────── -->
+      <section class="rail" aria-label="Qué incluye Nido">
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10v16H5.5A1.5 1.5 0 0 1 4 18.5Zm10-1.5h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14Z"/></svg>
+            <b>Materias</b><span>por año y por carrera</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v2M17 3v2M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>
+            <b>Calendario</b><span>clases y entregas</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v5l3 2M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Z"/></svg>
+            <b>Parciales</b><span>con plan de estudio</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h10l4 4v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 0v5h5"/></svg>
+            <b>Apuntes</b><span>páginas por unidad</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h12v10H4zM8 10h12v10H8"/></svg>
+            <b>Fichas</b><span>repaso que vuelve</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"/></svg>
+            <b>Búsqueda</b><span>todo a un atajo</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ──────────────────────── Recorrido ──────────────────────── -->
+      <section id="recorrido" class="tour" aria-labelledby="tour-title">
+        <div class="section-head">
+          <p class="eyebrow">Recorrido</p>
+          <h2 id="tour-title">La app, pantalla por pantalla.</h2>
+          <p class="lead">
+            Capturas reales de Nido con una cursada de ejemplo. Cambiá de pantalla y mirala
+            en claro o en oscuro.
           </p>
         </div>
-        <button class="card" id="flip" aria-pressed="false">
-          <small>TEORÍA DEL COLOR</small
-          ><strong id="question"
-            >¿Qué color complementa al violeta en el círculo cromático
-            tradicional?</strong
-          ><span id="turn">Ver respuesta ↻</span>
-        </button>
+
+        <div class="stage">
+          <div class="toolbar">
+            <div class="options" role="tablist" aria-label="Elegir pantalla">
+              <button role="tab" data-view="inicio" aria-selected="true" id="tab-inicio" aria-controls="tour-panel">Inicio</button>
+              <button role="tab" data-view="materia" aria-selected="false" id="tab-materia" aria-controls="tour-panel">Materia</button>
+              <button role="tab" data-view="semana" aria-selected="false" id="tab-semana" aria-controls="tour-panel">Calendario</button>
+            </div>
+            <button id="theme" class="pill" type="button" aria-pressed="false">Ver oscuro</button>
+          </div>
+
+          <div class="frame" id="tour-panel" role="tabpanel" aria-labelledby="tab-inicio">
+            <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span id="crumb">nido · inicio</span></div>
+            <a id="zoom" href="assets/inicio.png" aria-label="Abrir la captura a tamaño completo">
+              <img
+                id="screen"
+                width="1360"
+                height="860"
+                src="assets/inicio.png"
+                alt="Inicio de Nido con una sugerencia de estudio, clases y tareas"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
+
+        <p class="caption">
+          <span id="description" aria-live="polite">Inicio · una sugerencia concreta para empezar a estudiar.</span>
+          <small>Datos de ejemplo — ninguna materia real de ninguna persona.</small>
+        </p>
       </section>
-      <section class="end">
-        <img src="assets/nido.png" width="54" height="54" alt="" />
+
+      <!-- ──────────────────── 01 · Materias ──────────────────── -->
+      <section id="materias" class="chapter">
+        <div class="chapter-text">
+          <p class="eyebrow"><span class="num">01</span> Materias y unidades</p>
+          <h2>Cada materia, con<br /><em>su propia portada.</em></h2>
+          <p>
+            Ordená la carrera por años, dividí cada materia en unidades y marcá cuáles ya
+            estudiaste. Los cursos sueltos conviven con la facultad, sin mezclarse.
+          </p>
+          <ul class="ticks">
+            <li>Carreras, cursos externos y materias sueltas</li>
+            <li>Estados: cursando, a final o aprobada</li>
+            <li>Unidades con apuntes, archivos y guía para el final</li>
+          </ul>
+        </div>
+
+        <div class="chapter-art">
+          <div class="mock subjects" aria-hidden="true">
+            <article class="subject">
+              <div class="cover c1"></div>
+              <div class="row">
+                <div><b>Teoría del color</b><span>3 unidades · 2 estudiadas</span></div>
+                <div class="meter"><i style="width: 66%"></i></div>
+                <span class="tag">Cursando</span>
+              </div>
+            </article>
+            <article class="subject">
+              <div class="cover c2"></div>
+              <div class="row">
+                <div><b>Dibujo de observación</b><span>4 unidades · 1 estudiada</span></div>
+                <div class="meter"><i style="width: 28%"></i></div>
+                <span class="tag">Cursando</span>
+              </div>
+            </article>
+            <article class="subject">
+              <div class="cover c3"></div>
+              <div class="row">
+                <div><b>Taller de grabado</b><span>5 unidades · 4 estudiadas</span></div>
+                <div class="meter"><i style="width: 82%"></i></div>
+                <span class="tag">A final</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────── 02 · Calendario y entregas ──────────────── -->
+      <section id="agenda" class="chapter reverse">
+        <div class="chapter-text">
+          <p class="eyebrow"><span class="num">02</span> Calendario, tareas y entregas</p>
+          <h2>Cargá la fecha<br /><em>una sola vez.</em></h2>
+          <p>
+            La fecha de una entrega o de un parcial aparece sola en el calendario semanal,
+            en las próximas entregas y en el recordatorio del día. Y si usás otro calendario,
+            exportás la semana en un archivo .ics.
+          </p>
+          <ul class="ticks">
+            <li>Clases fijas y entregas en la misma vista</li>
+            <li>Tareas sueltas o rutinas, por materia</li>
+            <li>Exportación a Apple o Google Calendar (.ics)</li>
+          </ul>
+        </div>
+
+        <div class="chapter-art">
+          <div class="mock week" aria-hidden="true">
+            <header>
+              <div><b>Semana del 23 al 28</b><span>Cursadas fijas y entregas</span></div>
+              <span class="pill small">Hoy</span>
+            </header>
+            <div class="grid">
+              <div class="day"><em>LUN</em><i>23</i></div>
+              <div class="day"><em>MAR</em><i>24</i><div class="ev lav"><b>Teoría del color</b><span>10:00 · clase</span></div></div>
+              <div class="day"><em>MIÉ</em><i>25</i></div>
+              <div class="day today"><em>JUE</em><i>26</i><div class="ev rose"><b>Entrega: círculo cromático</b><span>23:59</span></div></div>
+              <div class="day"><em>VIE</em><i>27</i></div>
+              <div class="day"><em>SÁB</em><i>28</i><div class="ev sand"><b>Taller de grabado</b><span>09:30 · clase</span></div></div>
+            </div>
+            <footer><span class="ics">Exportar (.ics)</span></footer>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────── 03 · Estudiar ──────────────────── -->
+      <section id="estudio" class="study">
+        <div class="section-head">
+          <p class="eyebrow"><span class="num">03</span> Sesiones, fichas y planes</p>
+          <h2>Estudiar con estructura,<br /><em>sin perder el ritmo.</em></h2>
+        </div>
+
+        <div class="study-grid">
+          <article class="panel">
+            <p class="panel-label">Sesión de estudio</p>
+            <div class="timer">
+              <div class="dial">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="27" class="track" />
+                  <circle cx="32" cy="32" r="27" class="run" />
+                </svg>
+                <b class="clock">18:42</b>
+              </div>
+              <div><b>Teoría del color</b><span>Unidad 2 · Pigmentos</span></div>
+            </div>
+            <p class="panel-copy">
+              Elegí 10, 25 o 50 minutos. Nido guarda cuánto estudiaste y de qué materia.
+            </p>
+          </article>
+
+          <article class="panel flip-panel">
+            <p class="panel-label">Ficha de repaso</p>
+            <button class="card" id="flip" type="button" aria-pressed="false">
+              <small>TEORÍA DEL COLOR</small>
+              <strong id="question">¿Qué color complementa al violeta en el círculo cromático tradicional?</strong>
+              <span id="turn">Ver respuesta ↻</span>
+            </button>
+            <p class="panel-copy">
+              Las fichas vuelven a aparecer según cómo te fue. Probá dar vuelta la de ejemplo.
+            </p>
+          </article>
+
+          <article class="panel">
+            <p class="panel-label">Plan hacia el parcial</p>
+            <p class="countdown">Faltan 12 días</p>
+            <ul class="plan">
+              <li class="done">Unidad 1 — repasada</li>
+              <li class="now">Unidad 2 — en curso</li>
+              <li>Unidad 3 — pendiente</li>
+            </ul>
+            <p class="panel-copy">Cargás la fecha del parcial y Nido arma el plan hacia atrás.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ──────────────── 04 · Apuntes y archivos ──────────────── -->
+      <section id="archivos" class="chapter">
+        <div class="chapter-text">
+          <p class="eyebrow"><span class="num">04</span> Apuntes, archivos y búsqueda</p>
+          <h2>Todo tu material,<br /><em>a un atajo.</em></h2>
+          <p>
+            Escribí apuntes con títulos, listas, tablas e imágenes. Guardá los PDFs de la
+            cátedra y los links al campus. Después encontrá cualquier cosa desde el buscador.
+          </p>
+          <ul class="ticks">
+            <li>Páginas propias por unidad, con autoguardado</li>
+            <li>PDFs, imágenes y links por materia</li>
+            <li>Buscador global con <kbd>Ctrl</kbd> <kbd>K</kbd></li>
+          </ul>
+        </div>
+
+        <div class="chapter-art">
+          <div class="mock finder" aria-hidden="true">
+            <div class="search"><svg viewBox="0 0 24 24"><path d="m20 20-4.2-4.2M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"/></svg><span>pigmentos</span><kbd>Ctrl K</kbd></div>
+            <ul>
+              <li><span class="ico pdf">PDF</span><div><b>Guía de pigmentos.pdf</b><span>Teoría del color · 2,1 MB</span></div></li>
+              <li><span class="ico page">Pág</span><div><b>Contrastes cromáticos</b><span>Teoría del color · Unidad 2</span></div></li>
+              <li><span class="ico link">Link</span><div><b>Campus · Aula virtual</b><span>Dibujo de observación</span></div></li>
+              <li><span class="ico deck">Ficha</span><div><b>Complementario del violeta</b><span>Mazo Unidad 2</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────── Claro y oscuro ──────────────────── -->
+      <section class="duo" aria-labelledby="duo-title">
+        <div class="section-head">
+          <p class="eyebrow">De día y de noche</p>
+          <h2 id="duo-title">La misma app,<br /><em>a cualquier hora.</em></h2>
+          <p class="lead">
+            Nido sigue el tema de tu sistema o lo elegís vos. El mismo Inicio, cuando
+            arrancás a la mañana y cuando estudiás de madrugada.
+          </p>
+        </div>
+        <div class="duo-grid">
+          <figure>
+            <picture>
+              <source media="(max-width: 620px)" srcset="assets/inicio-mobile.png" width="390" height="730" />
+              <img src="assets/inicio.png" width="1360" height="860" loading="lazy" alt="Inicio de Nido en modo claro" />
+            </picture>
+            <figcaption>Modo claro</figcaption>
+          </figure>
+          <figure class="night">
+            <picture>
+              <source media="(max-width: 620px)" srcset="assets/noche-mobile.png" width="390" height="730" />
+              <img src="assets/noche.png" width="1360" height="860" loading="lazy" alt="Inicio de Nido en modo oscuro" />
+            </picture>
+            <figcaption>Modo oscuro</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ──────────────────── Dónde usarlo ──────────────────── -->
+      <section id="plataformas" class="platforms" aria-labelledby="plat-title">
+        <div class="section-head">
+          <p class="eyebrow">Dónde usarlo</p>
+          <h2 id="plat-title">En el navegador hoy.</h2>
+        </div>
+        <div class="platform-grid">
+          <article class="platform ready">
+            <span class="status">Disponible</span>
+            <h3>Web</h3>
+            <p>
+              Entrás con tu cuenta y tenés todo sincronizado entre la compu y el celular.
+              No hay nada que instalar.
+            </p>
+            <a class="inline-link" href="https://nido-rho-gules.vercel.app/">Abrir Nido en la web →</a>
+          </article>
+          <article class="platform soon">
+            <span class="status">En camino</span>
+            <h3>Windows</h3>
+            <p>
+              La versión de escritorio está en pruebas. Cuando el instalador esté verificado,
+              el link va a aparecer acá — antes no.
+            </p>
+            <span class="inline-link muted-link">Todavía sin descarga</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ──────────────────────── Cierre ──────────────────────── -->
+      <section class="close">
+        <svg class="petals big" viewBox="0 0 120 120" aria-hidden="true">
+          <ellipse cx="32" cy="82" rx="14" ry="20" transform="rotate(-24 32 82)" fill="#D4969B" />
+          <ellipse cx="58" cy="68" rx="16" ry="29" transform="rotate(-16 58 68)" fill="#A2A6CA" />
+          <ellipse cx="88" cy="58" rx="18" ry="39" transform="rotate(-10 88 58)" fill="#E5D7BD" />
+        </svg>
         <h2>Tu próxima sesión<br /><em>empieza acá.</em></h2>
-        <a class="button" href="https://nido-rho-gules.vercel.app/"
-          >Abrir Nido en la web ↗</a
-        >
-        <p>Windows · Descarga pendiente de validación.</p>
+        <p>Gratis para empezar. Cargá las materias de este cuatrimestre y probalo con lo que tenés que estudiar hoy.</p>
+        <a class="button" href="https://nido-rho-gules.vercel.app/">Abrir Nido en la web</a>
       </section>
     </main>
-    <footer>
-      <b>nido</b><span>Plate Studio</span><a href="#inicio">Volver arriba ↑</a>
+
+    <footer class="site-foot">
+      <div class="foot-brand">
+        <svg class="petals" viewBox="0 0 120 120" aria-hidden="true">
+          <ellipse cx="32" cy="82" rx="14" ry="20" transform="rotate(-24 32 82)" fill="#D4969B" />
+          <ellipse cx="58" cy="68" rx="16" ry="29" transform="rotate(-16 58 68)" fill="#A2A6CA" />
+          <ellipse cx="88" cy="58" rx="18" ry="39" transform="rotate(-10 88 58)" fill="#E5D7BD" />
+        </svg>
+        <b>nido</b>
+        <span>donde crece lo que aprendés</span>
+      </div>
+      <div class="foot-links">
+        <a href="https://nido-rho-gules.vercel.app/">Abrir la app</a>
+        <a href="#inicio">Volver arriba ↑</a>
+      </div>
+      <p class="foot-note">Developed by Plate Studio</p>
     </footer>
+
     <script src="tour.js"></script>
   </body>
 </html>
