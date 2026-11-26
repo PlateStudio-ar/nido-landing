@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Nido · media</title>
+<p style="font:14px system-ui;color:#666">Enviando archivo…</p>
+<script>
+// Puente para publicar los videos de Nido desde el navegador del equipo: la pestaña que abrió esta página
+// recibe el archivo (público) por postMessage. Solo se envía a orígenes de las redes oficiales.
+(async () => {
+  const ok = ["https://www.instagram.com", "https://www.tiktok.com", "https://studio.youtube.com"];
+  const q = new URLSearchParams(location.search);
+  const src = q.get("src"), to = q.get("to");
+  if (!window.opener || !ok.includes(to) || !/^[\w.-]+$/.test(src || "")) { document.body.textContent = "no"; return; }
+  const r = await fetch(src, { cache: "no-store" });
+  const buf = await r.arrayBuffer();
+  window.opener.postMessage({ nidoMedia: true, name: src, type: r.headers.get("content-type"), buf }, to, [buf]);
+  document.body.textContent = "ok " + buf.byteLength;
+  setTimeout(() => window.close(), 1500);
+})();
+</script>
