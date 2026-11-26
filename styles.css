@@ -2,3 +2,13 @@
 .intro h1:before{content:"";display:block;width:82px;height:66px;margin:0 auto 18px;background:url(assets/petalos.svg) center / contain no-repeat;animation:petals .85s cubic-bezier(.22,1,.36,1) both}
 @keyframes petals{from{opacity:0;transform:rotate(-8deg) translateY(10px)}to{opacity:1;transform:none}}
 @media(max-width:680px){#recorrido .stage{padding:10px 4px 0}.toolbar{padding-inline:4px}#screen{aspect-ratio:390/730}}
+#theme[aria-pressed=true]{background:#332b31;color:#fff}
+.button,.card{transition:transform .24s ease,box-shadow .24s ease}
+@media(hover:hover){.button:hover{transform:translateY(-2px)}.card:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:6px 9px #d4cddc}}
+@media(prefers-reduced-motion:no-preference){
+ @supports(animation-timeline:view()){
+  .chapter figure,.practice .card{animation:lift linear both;animation-timeline:view();animation-range:entry 0% entry 95%}
+ }
+}
+@keyframes lift{from{opacity:.55;translate:0 22px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.button,.card{transition:none!important}.button:hover,.card:hover{transform:none}}
