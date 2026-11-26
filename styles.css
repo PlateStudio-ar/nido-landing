@@ -599,3 +599,12 @@ footer {
     top: 0;
   }
 }
+.intro p,.chapter p,.practice p{color:#494148}
+h1 em,h2 em{color:#76424c}
+.paper span,.caption small,.end p{color:#594e55}
+@media(prefers-reduced-motion:no-preference){
+ .wheel{animation:lay-wheel 900ms cubic-bezier(.22,1,.36,1) both}
+ .tint{animation:lay-tint 1050ms cubic-bezier(.22,1,.36,1) both}
+}
+@keyframes lay-wheel{from{transform:translate(-12px,9px) rotate(-21deg)}to{transform:rotate(-16deg)}}
+@keyframes lay-tint{from{transform:translate(16px,12px) rotate(18deg)}to{transform:rotate(13deg)}}
