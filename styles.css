@@ -661,3 +661,36 @@ body { transition: opacity 0.2s ease; }
   .faq summary { font-size: 17px; padding: 20px 2px; }
   .foot-inner { grid-template-columns: 1fr; }
 }
+
+/* ───────────────────────── Aviso flotante: plan Fundador ───────────────────────── */
+.founder-pop {
+  position: fixed; right: 24px; bottom: 24px; z-index: 60;
+  width: min(340px, calc(100vw - 32px));
+  padding: 22px 22px 20px; border-radius: 20px;
+  background: var(--bg); border: 1.5px solid #cfa6ad;
+  box-shadow: 0 24px 60px -24px rgb(31 27 29 / 0.35), 0 2px 8px rgb(31 27 29 / 0.06);
+  opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.founder-pop.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.founder-pop[hidden] { display: none; }
+.fp-close {
+  position: absolute; top: 12px; right: 12px; width: 30px; height: 30px;
+  display: grid; place-items: center; border: 0; border-radius: 999px;
+  background: transparent; color: var(--muted); cursor: pointer;
+}
+.fp-close:hover { background: var(--bg-2); color: var(--ink); }
+.fp-close .ic { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.fp-badge {
+  display: inline-block; padding: 4px 10px; border-radius: 999px;
+  background: #f3e3e5; color: var(--accent); font-size: 12px; font-weight: 600;
+}
+.fp-title { margin: 12px 30px 0 0; font: 520 22px/1.2 var(--serif); letter-spacing: -0.01em; color: var(--ink); }
+.fp-title em { color: var(--accent); }
+.fp-text { margin: 8px 0 16px; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
+.fp-cta { width: 100%; justify-content: center; }
+@media (max-width: 640px) {
+  .founder-pop { right: 16px; left: 16px; bottom: 16px; width: auto; padding: 18px 18px 16px; }
+  .fp-title { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) { .founder-pop { transition: none; transform: none; } }

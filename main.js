@@ -268,6 +268,35 @@
 
   applyLang(lang, false);
 
+  /* ───────────── Aviso flotante del plan Fundador ───────────── */
+  (() => {
+    const pop = document.getElementById("founder-pop");
+    if (!pop) return;
+    const KEY = "nido-landing-fp-closed";
+    const WEEK = 7 * 24 * 60 * 60 * 1000;
+    try {
+      const closed = Number(localStorage.getItem(KEY) || 0);
+      if (closed && Date.now() - closed < WEEK) return;
+    } catch (e) {}
+    let shown = false;
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      pop.hidden = false;
+      requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add("is-open")));
+      window.removeEventListener("scroll", onScroll);
+    };
+    const onScroll = () => { if (window.scrollY > 500) show(); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // En el celu tapa los botones del inicio: ahí aparece recién cuando la persona baja.
+    if (window.matchMedia("(min-width: 641px)").matches) setTimeout(show, 4000);
+    pop.querySelector("[data-fp-close]").addEventListener("click", () => {
+      pop.classList.remove("is-open");
+      setTimeout(() => { pop.hidden = true; }, 350);
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    });
+  })();
+
   /* ───────────── Cielo nocturno ───────────── */
   const sky = document.querySelector(".stars");
   if (sky) {

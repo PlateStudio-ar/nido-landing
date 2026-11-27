@@ -24,9 +24,9 @@
     <link rel="icon" href="assets/nido.png" />
     <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
     <script>document.documentElement.classList.add("js");</script>
-    <script src="i18n.js?v=6"></script>
+    <script src="i18n.js?v=7"></script>
   </head>
   <body data-download="https://github.com/PlateStudio-ar/nido-landing/releases/latest/download/Nido-Setup.exe" data-web="https://app.nidoestudio.ar/">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -379,6 +379,13 @@
       <div class="foot-base"><span>© 2026 Plate Studio</span><span data-i18n="foot.note">Las capturas usan una cursada de ejemplo: ningún dato pertenece a una persona real.</span></div>
     </footer>
 
-    <script src="main.js?v=6" defer></script>
+    <aside class="founder-pop" id="founder-pop" aria-labelledby="fp-t" hidden>
+      <button class="fp-close" type="button" data-fp-close data-i18n-aria="fp.close" aria-label="Cerrar"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+      <span class="fp-badge" data-i18n="fp.badge">Plan Fundador</span>
+      <p class="fp-title" id="fp-t" data-i18n="fp.title">Los primeros 100 tienen <em>Pro gratis 6 meses</em></p>
+      <p class="fp-text" data-i18n="fp.text">Todo lo de Pro, sin tarjeta, a cambio de contarnos qué te parece Nido.</p>
+      <a class="btn btn-dark fp-cta" href="https://app.nidoestudio.ar/fundadores"><span data-i18n="fp.cta">Quiero ser fundador</span><svg class="ic"><use href="#i-arrow" /></svg></a>
+    </aside>
+    <script src="main.js?v=7" defer></script>
   </body>
 </html>
