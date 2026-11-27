@@ -22,7 +22,7 @@
   };
 
   const T = (window.NIDO_I18N && window.NIDO_I18N.js) || {};
-  let lang = window.NIDO_LANG || "es";
+  const lang = window.NIDO_LANG || document.documentElement.dataset.lang || "es";
   const t = (k) => (T[lang] && T[lang][k]) || (T.es && T.es[k]) || "";
 
   /* Botones según plataforma, en el idioma actual. */
@@ -58,59 +58,33 @@
     if (note) note.textContent = isWindows ? t("noteWin") : isMobile ? t("noteMobile") : t("noteMac");
   };
 
-  /* ───────────── Idiomas ───────────── */
-  const DICT = window.NIDO_I18N || {};
-  const HTML_LANG = { es: "es-AR", en: "en", pt: "pt-BR" };
-  const ATTRS = [["data-i18n-alt", "alt"], ["data-i18n-aria", "aria-label"], ["data-i18n-content", "content"]];
-  const textEls = [...document.querySelectorAll("[data-i18n]")].map((el) => ({ el, key: el.dataset.i18n, es: el.innerHTML }));
-  const attrEls = [];
-  ATTRS.forEach(([data, attr]) => {
-    document.querySelectorAll(`[${data}]`).forEach((el) => attrEls.push({ el, attr, key: el.getAttribute(data), es: el.getAttribute(attr) }));
-  });
-  const titleEs = document.title;
-  // Capturas de la app: cada idioma tiene las suyas en assets/app/<idioma>/.
-  const shotsImgs = [...document.querySelectorAll('img[src*="assets/app/"]')].map((el) => ({ el, src: el.getAttribute("src"), srcset: el.getAttribute("srcset") }));
-  const shotPath = (v, l) => (v && l !== "es" ? v.replace(/assets\/app\//g, `assets/app/${l}/`) : v);
-
-  const applyLang = (next, persist) => {
-    lang = DICT[next] || next === "es" ? next : "es";
-    const d = lang === "es" ? null : DICT[lang];
-    textEls.forEach(({ el, key, es }) => {
-      const v = d && d[key] != null ? d[key] : es;
-      if (el.innerHTML !== v) el.innerHTML = v;
-    });
-    attrEls.forEach(({ el, attr, key, es }) => el.setAttribute(attr, d && d[key] != null ? d[key] : es));
-    document.title = d && d["meta.title"] ? d["meta.title"] : titleEs;
-    shotsImgs.forEach(({ el, src, srcset }) => {
-      const nsrc = shotPath(src, lang), nset = shotPath(srcset, lang);
-      if (srcset && el.getAttribute("srcset") !== nset) el.setAttribute("srcset", nset);
-      if (el.getAttribute("src") !== nsrc) el.setAttribute("src", nsrc);
-    });
-    document.documentElement.lang = HTML_LANG[lang];
+  /* ───────────── Idiomas ─────────────
+     Cada idioma es su propia página (/, /en/, /pt/), con el HTML ya traducido por tools/build-pages.mjs.
+     Acá solo se marca el idioma actual, se guarda la elección y se conserva la sección (#) al cambiar. */
+  const applyLang = () => {
     document.querySelectorAll("[data-lang-current]").forEach((el) => (el.textContent = lang.toUpperCase()));
-    document.querySelectorAll("[data-set-lang]").forEach((b) => {
-      const on = b.dataset.setLang === lang;
-      if (b.getAttribute("role") === "menuitemradio") b.setAttribute("aria-checked", String(on));
-      else b.setAttribute("aria-pressed", String(on));
+    document.querySelectorAll("[data-set-lang]").forEach((a) => {
+      const on = a.dataset.setLang === lang;
+      if (a.getAttribute("role") === "menuitemradio") a.setAttribute("aria-checked", String(on));
+      if (on) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
     });
     paintPlatform();
     if (typeof paintCaption === "function") paintCaption();
-    if (persist) {
-      try { localStorage.setItem("nido-landing-lang", lang); } catch (e) {}
-      try {
-        const u = new URL(location.href);
-        if (u.searchParams.has("lang")) { u.searchParams.set("lang", lang); history.replaceState(null, "", u); }
-      } catch (e) {}
-    }
-    document.documentElement.classList.remove("lang-wait");
   };
+  document.querySelectorAll("a[data-set-lang]").forEach((a) =>
+    a.addEventListener("click", () => {
+      try { localStorage.setItem("nido-landing-lang", a.dataset.setLang); } catch (e) {}
+      if (location.hash) a.href = a.href.split("#")[0] + location.hash;
+    }),
+  );
 
   /* Menú de idioma del nav */
   const menu = document.querySelector("[data-lang-menu]");
   if (menu) {
     const btn = menu.querySelector(".lang-btn");
     const list = menu.querySelector(".lang-list");
-    const items = [...list.querySelectorAll("button")];
+    const items = [...list.querySelectorAll("[data-set-lang]")];
     const open = (focusItem) => {
       list.hidden = false;
       btn.setAttribute("aria-expanded", "true");
@@ -129,12 +103,11 @@
       const i = items.indexOf(document.activeElement);
       if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
       if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      if (e.key === " ") { e.preventDefault(); document.activeElement.click(); }
       if (e.key === "Escape" || e.key === "Tab") close(e.key === "Escape");
     });
     document.addEventListener("pointerdown", (e) => { if (!menu.contains(e.target)) close(false); });
-    items.forEach((it) => it.addEventListener("click", () => close(true)));
   }
-  document.querySelectorAll("[data-set-lang]").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.setLang, true)));
 
   /* ───────────── Navegación: fondo al scrollear ───────────── */
   const nav = document.getElementById("nav");
@@ -266,7 +239,7 @@
     select(0);
   }
 
-  applyLang(lang, false);
+  applyLang();
 
   /* ───────────── Cielo nocturno ───────────── */
   const sky = document.querySelector(".stars");

@@ -1,0 +1,7 @@
+# Nido · landing
+User-agent: *
+Allow: /
+Disallow: /nido-landing/media/
+Disallow: /nido-landing/tools/
+
+Sitemap: https://platestudio-ar.github.io/nido-landing/sitemap.xml

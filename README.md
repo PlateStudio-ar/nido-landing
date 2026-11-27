@@ -21,12 +21,33 @@ La URL se cambia en un solo lugar: el atributo `data-download` del `<body>` en `
 La landing detecta la plataforma: en Windows el botón principal descarga; en Mac abre la versión web.
 En el celu todavía no se muestra la versión móvil: el botón lleva a la sección de descarga.
 
-## Idiomas
+## Idiomas y SEO
 
-Español (en el HTML), inglés y portugués (en `i18n.js`). Cada texto traducible lleva `data-i18n="clave"`
-(o `data-i18n-alt`, `data-i18n-aria`, `data-i18n-content`). El idioma se elige con `?lang=es|en|pt`,
-después con lo que la persona eligió antes y si no, con el idioma del navegador (inglés si no es es/pt).
-Al agregar un texto nuevo, sumá su clave en `en` y en `pt`.
+Cada idioma tiene su propia URL y su HTML ya traducido (es lo que indexa Google):
+
+| Idioma | Archivo | URL |
+| --- | --- | --- |
+| Español | `index.html` (se edita a mano) | `/` |
+| Inglés | `en/index.html` (generado) | `/en/` |
+| Portugués | `pt/index.html` (generado) | `/pt/` |
+
+Los textos en inglés y portugués están en `i18n.js`. Cada texto traducible del HTML lleva `data-i18n="clave"`
+(o `data-i18n-alt`, `data-i18n-aria`, `data-i18n-content`; `js:clave` toma el texto de `NIDO_I18N.js`).
+**Después de cambiar `index.html` o `i18n.js`, regenerá y revisá:**
+
+```bash
+node tools/build-pages.mjs    # en/ y pt/, bloque SEO del <head> (canonical, hreflang, Open Graph, JSON-LD), sitemap.xml y robots.txt
+node tools/check-pages.mjs    # JSON-LD válido, links y anclas, hreflang recíprocos, un h1, alt y lazy-loading
+```
+
+Si falta una traducción, `build-pages` avisa y termina con error. Las preguntas frecuentes visibles se copian solas
+al `FAQPage` de cada idioma. La URL pública sale de `SITE_URL` (por defecto `https://platestudio-ar.github.io/nido-landing/`);
+si la landing se muda a un dominio propio: `SITE_URL=https://dominio/ node tools/build-pages.mjs`.
+
+El selector de idioma lleva a la URL de cada idioma y guarda la elección. La raíz redirige a `/en/` o `/pt/` solo
+con `?lang=en|pt` (links viejos) o si la persona eligió ese idioma antes; nunca por el idioma del navegador.
+Las imágenes para redes (`assets/og.jpg`, `og-en.jpg`, `og-pt.jpg`, 1200×630) son el recorte superior de
+`assets/app/[idioma/]inicio-claro-3840.webp`.
 
 ## Regenerar las capturas
 

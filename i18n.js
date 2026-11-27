@@ -1,10 +1,11 @@
 /* Nido · landing — traducciones.
-   El español vive en el HTML (es el idioma original y el que leen los buscadores).
-   Acá están inglés y portugués, más los textos que arma main.js. */
+   El español vive en index.html. Acá están inglés y portugués, más los textos que arma main.js.
+   Las páginas en/index.html y pt/index.html se generan con `node tools/build-pages.mjs` a partir de
+   index.html + este archivo: después de cambiar un texto, volvé a correrlo. */
 window.NIDO_I18N = {
   en: {
-    "meta.title": "Nido · Where what you learn grows",
-    "meta.desc": "Nido organizes your degree: subjects, notes, assignments, exams and flashcards in one app. Download it free for Windows or use it in your browser.",
+    "meta.title": "Nido · Free study planner app for college students",
+    "meta.desc": "Organize classes, notes, assignments and exams in one app. Add your exam date and Nido builds a day-by-day study plan. Free on Windows and the web.",
     "skip": "Skip to content",
     "ann.new": "New",
     "ann.text": "Add your exam date and Nido builds your study plan, day by day",
@@ -132,10 +133,22 @@ window.NIDO_I18N = {
     "p.pro.2": "Unlimited active subjects",
     "p.pro.3": "10 GB and files up to 250 MB",
     "p.pro.dev": "Later on: AI flashcards and summaries from your notes",
-    "faq.eyebrow": "Questions",
-    "faq.title": "Frequently asked.",
+    "faq.eyebrow": "Frequently asked questions",
+    "faq.title": "What students usually ask.",
+    "faq.lead": "A short guide to getting organized in college and studying with Nido.",
+    "faq.org.q": "How do I get organized to study in college?",
+    "faq.org.a": "Set up your degree by year and add the subjects you're taking. Each subject keeps its units, notes, files, assignments and your professors' details. The weekly calendar brings your classes and assignments together, today's tasks tell you what to do today and, every time you open Nido, Home suggests where to start.",
     "faq.1.q": "Is Nido free?",
-    "faq.1.a": "Yes. The Free plan includes 1 degree, 1 course list, up to 5 active subjects, 200 flashcards and 100 MB for files. Passed or archived subjects don't count toward the limit.",
+    "faq.1.a": "Yes, Nido is a free study app for Windows and the web. The Free plan includes 1 degree, 1 course list, up to 5 active subjects, 200 flashcards and 100 MB for files. Passed or archived subjects don't count toward the limit.",
+    "faq.plan.q": "How do I make a study plan for a midterm or a final exam?",
+    "faq.plan.a": "In the subject, add the exam date and the topics it covers. Nido spreads them across the days you have left, saves the last day for a general review and tells you what to study today. If you fall behind, it redistributes what's left, so you never have to reorganize anything. It works the same for a midterm or a final: only the date changes.",
+    "faq.cards.q": "What are flashcards and how do they help me study?",
+    "faq.cards.a": "They're question-and-answer cards you create in each subject. Nido uses spaced repetition: after each card you pick Again, Hard, Good or Easy, and the card comes back right when you're about to forget it. You can add a routine like “Review flashcards for 10 minutes” every day.",
+    /* REVISAR (Rami): respuesta sobre IA, aprobala antes de publicar. */
+    "faq.ai.q": "Does Nido have AI to help you study or summarize PDFs?",
+    "faq.ai.a": "Not yet. AI flashcards and summaries from your notes are in the works, with no release date yet. Today Nido helps you organize your material (your PDFs live inside each subject), build a plan for your exam and review with flashcards.",
+    "faq.timer.q": "Does it have a study session timer, like Pomodoro?",
+    "faq.timer.a": "Yes. Start a 10 to 45 minute session and the timer follows you around the app. Nido adds up your study hours for the week and your streak of days in a row.",
     "faq.2.q": "Can I use it on a Mac?",
     "faq.2.a": "Yes, in your browser and with the same account. The downloadable app is for Windows; on Mac, Nido works fully on the web.",
     "faq.3.q": "Does it sync between my computers?",
@@ -146,6 +159,8 @@ window.NIDO_I18N = {
     "faq.5.a": "Yes: university, college or standalone courses. You set up your degrees by year and each subject has its units, files, assignments and exams.",
     "faq.6.q": "Can I take my data with me?",
     "faq.6.a": "Anytime: export your notes in Markdown, all your data in JSON and your flashcards in CSV from Settings.",
+    "faq.lang.q": "Is Nido available in English?",
+    "faq.lang.a": "This page is in English, but inside, the app is in Spanish for now. English and Portuguese are on the way.",
     "close.title": "Your next session<br /><em>starts here.</em>",
     "foot.tagline": "Where what you learn grows.",
     "foot.dev": "Developed by",
@@ -158,8 +173,8 @@ window.NIDO_I18N = {
   },
 
   pt: {
-    "meta.title": "Nido · Onde cresce o que você aprende",
-    "meta.desc": "O Nido organiza o seu curso: matérias, anotações, entregas, provas e flashcards em um só app. Baixe grátis para Windows ou use no navegador.",
+    "meta.title": "Nido · App grátis para organizar a faculdade e estudar",
+    "meta.desc": "Organize matérias, anotações, entregas e provas em um só app. Coloque a data da prova e o Nido monta seu cronograma de estudos. Grátis no Windows e na web.",
     "skip": "Pular para o conteúdo",
     "ann.new": "Novo",
     "ann.text": "Coloque a data da prova e o Nido monta o seu plano dia a dia",
@@ -287,10 +302,22 @@ window.NIDO_I18N = {
     "p.pro.2": "Matérias ativas ilimitadas",
     "p.pro.3": "10 GB e arquivos de até 250 MB",
     "p.pro.dev": "Mais adiante: flashcards e resumos com IA a partir das suas anotações",
-    "faq.eyebrow": "Perguntas",
+    "faq.eyebrow": "Perguntas frequentes",
     "faq.title": "O que costumam perguntar.",
+    "faq.lead": "Um guia rápido para se organizar na faculdade e estudar com o Nido.",
+    "faq.org.q": "Como me organizar para estudar na faculdade?",
+    "faq.org.a": "Monte o seu curso por ano e adicione as matérias que você está cursando. Cada matéria guarda as unidades, anotações, arquivos, entregas e os dados dos professores. O calendário semanal junta as suas aulas e entregas, as tarefas do dia mostram o que fazer hoje e, sempre que você abre o Nido, o Início sugere por onde começar.",
     "faq.1.q": "O Nido é grátis?",
-    "faq.1.a": "Sim. O plano Grátis inclui 1 curso, 1 lista de cursos avulsos, até 5 matérias ativas, 200 flashcards e 100 MB para arquivos. Matérias aprovadas ou arquivadas não contam para o limite.",
+    "faq.1.a": "Sim, o Nido é um app para estudar grátis, no Windows e na web. O plano Grátis inclui 1 curso, 1 lista de cursos avulsos, até 5 matérias ativas, 200 flashcards e 100 MB para arquivos. Matérias aprovadas ou arquivadas não contam para o limite.",
+    "faq.plan.q": "Como montar um cronograma de estudos para uma prova?",
+    "faq.plan.a": "Na matéria, você coloca a data da prova e os temas que vão cair. O Nido distribui os temas nos dias que faltam, deixa o último dia para uma revisão geral e mostra o que estudar hoje. Se você se atrasar, ele redistribui o que falta, sem você precisar reorganizar nada. Funciona igual para uma prova parcial ou um exame final: só muda a data.",
+    "faq.cards.q": "O que são flashcards e como eles ajudam a estudar?",
+    "faq.cards.a": "São cartões de pergunta e resposta que você cria em cada matéria. O Nido usa repetição espaçada: depois de cada flashcard você escolhe De novo, Difícil, Bom ou Fácil, e ele volta bem quando você está prestes a esquecer. Dá para criar uma rotina como «Revisar flashcards por 10 minutos» todos os dias.",
+    /* REVISAR (Rami): resposta sobre IA, aprovar antes de publicar. */
+    "faq.ai.q": "O Nido tem inteligência artificial para estudar ou resumir PDFs?",
+    "faq.ai.a": "Ainda não. Flashcards e resumos com IA a partir das suas anotações estão em preparação, ainda sem data. Hoje o Nido ajuda você a organizar o material (os seus PDFs ficam dentro de cada matéria), montar o plano para a prova e revisar com flashcards.",
+    "faq.timer.q": "Tem cronômetro para sessões de estudo, tipo Pomodoro?",
+    "faq.timer.a": "Sim. Comece uma sessão de 10 a 45 minutos e o cronômetro te acompanha pelo app. O Nido soma as suas horas de estudo da semana e a sua sequência de dias seguidos.",
     "faq.2.q": "Posso usar no Mac?",
     "faq.2.a": "Sim, no navegador e com a mesma conta. O app para baixar é para Windows; no Mac, o Nido funciona completo na web.",
     "faq.3.q": "Sincroniza entre os meus computadores?",
@@ -301,6 +328,8 @@ window.NIDO_I18N = {
     "faq.5.a": "Sim: faculdade, curso técnico ou cursos avulsos. Você monta os seus cursos por ano e cada matéria tem as suas unidades, arquivos, entregas e provas.",
     "faq.6.q": "Posso levar os meus dados?",
     "faq.6.a": "Quando quiser: exporte as anotações em Markdown, todos os dados em JSON e os flashcards em CSV em Configurações.",
+    "faq.lang.q": "O Nido está em português?",
+    "faq.lang.a": "Esta página está em português, mas por dentro o app ainda está em espanhol. O português e o inglês estão a caminho.",
     "close.title": "A sua próxima sessão<br /><em>começa aqui.</em>",
     "foot.tagline": "Onde cresce o que você aprende.",
     "foot.dev": "Desenvolvido por",
@@ -359,39 +388,30 @@ window.NIDO_I18N = {
   },
 };
 
-/* Idioma inicial: ?lang=, después lo que eligió antes, después el del navegador. */
+/* Idioma de la página: cada idioma tiene su propia URL (/, /en/, /pt/) y su HTML ya traducido.
+   Solo la página en español (la raíz) redirige, para no romper links viejos con ?lang=en|pt
+   y para respetar el idioma que la persona eligió antes en el selector. Nunca se redirige
+   por el idioma del navegador: así los buscadores ven cada versión tal cual es. */
 (() => {
+  if (typeof document === "undefined") return; // al generar las páginas con Node
   const ok = ["es", "en", "pt"];
-  let lang = null;
+  const root = document.documentElement;
+  const lang = ok.includes(root.dataset.lang) ? root.dataset.lang : "es";
+  window.NIDO_LANG = lang;
+  if (lang !== "es") return;
+  let want = null;
   try {
     const q = new URLSearchParams(location.search).get("lang");
-    if (q && ok.includes(q.slice(0, 2).toLowerCase())) lang = q.slice(0, 2).toLowerCase();
+    if (q) want = q.slice(0, 2).toLowerCase();
   } catch (e) {}
-  if (!lang) {
+  if (!want) {
+    try { want = localStorage.getItem("nido-landing-lang"); } catch (e) {}
+  }
+  if (want === "en" || want === "pt") {
     try {
-      const saved = localStorage.getItem("nido-landing-lang");
-      if (ok.includes(saved)) lang = saved;
+      const u = new URL(`${want}/`, location.href);
+      u.hash = location.hash;
+      location.replace(u.href);
     } catch (e) {}
-  }
-  if (!lang) {
-    const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "es"];
-    for (const l of prefs) {
-      const c = String(l).slice(0, 2).toLowerCase();
-      if (ok.includes(c)) { lang = c; break; }
-    }
-    if (!lang) lang = "en";
-  }
-  window.NIDO_LANG = lang;
-  // Capturas de la app en el idioma de la página: precargamos la del inicio que corresponde.
-  const dir = lang === "es" ? "assets/app/" : `assets/app/${lang}/`;
-  const pre = document.createElement("link");
-  pre.rel = "preload"; pre.as = "image"; pre.href = `${dir}inicio-claro-1600.webp`;
-  pre.setAttribute("imagesrcset", ["1600", "2560", "3840"].map((w) => `${dir}inicio-claro-${w}.webp ${w}w`).join(", "));
-  pre.setAttribute("imagesizes", "(min-width: 1240px) 1180px, 94vw");
-  document.head.appendChild(pre);
-  if (lang !== "es") {
-    const root = document.documentElement;
-    root.classList.add("lang-wait");
-    setTimeout(() => root.classList.remove("lang-wait"), 1500); // por si algo falla, nunca queda en blanco
   }
 })();

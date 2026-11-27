@@ -525,21 +525,18 @@ kbd {
   animation: pop 0.18s var(--ease) both;
 }
 .lang-list[hidden] { display: none; }
-.lang-list button {
+.lang-list button, .lang-list a {
   display: flex; align-items: center; justify-content: space-between; width: 100%;
   padding: 10px 12px; border: 0; border-radius: 9px; background: none;
   font: 500 14px/1 var(--sans); color: var(--ink-2); text-align: left; cursor: pointer;
 }
-.lang-list button:hover, .lang-list button:focus-visible { background: var(--bg-2); color: var(--ink); outline: none; }
-.lang-list button[aria-checked="true"] { color: var(--ink); font-weight: 600; }
-.lang-list button[aria-checked="true"]::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--lav)); }
+.lang-list button:hover, .lang-list button:focus-visible, .lang-list a:hover, .lang-list a:focus-visible { background: var(--bg-2); color: var(--ink); outline: none; }
+.lang-list [aria-checked="true"] { color: var(--ink); font-weight: 600; }
+.lang-list [aria-checked="true"]::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--lav)); }
 .nav.is-dark .lang-btn { color: #d9d2da; }
 .nav.is-dark .lang-btn:hover, .nav.is-dark .lang-btn[aria-expanded="true"] { background: rgb(255 255 255 / 0.08); border-color: rgb(255 255 255 / 0.12); }
 @keyframes pop { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
 
-/* Mientras se aplica otro idioma, no mostramos el español un instante. */
-html.lang-wait body { opacity: 0; }
-body { transition: opacity 0.2s ease; }
 
 /* ─────────────────────────────── Footer ─────────────────────────────── */
 .footer { border-top: 1px solid var(--line); }
@@ -549,7 +546,7 @@ body { transition: opacity 0.2s ease; }
 }
 .foot-brand p { margin-top: 14px; color: var(--muted); font-size: 15px; }
 .foot-col { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; color: var(--ink-2); }
-.foot-col h4 { margin: 0 0 4px; font: 600 13px/1 var(--sans); color: var(--ink); }
+.foot-col .foot-h { margin: 0 0 4px; font: 600 13px/1 var(--sans); font-variation-settings: normal; letter-spacing: 0; color: var(--ink); }
 .foot-col a:hover { color: var(--ink); }
 /* Plate Studio */
 .studio {
@@ -566,7 +563,7 @@ body { transition: opacity 0.2s ease; }
 @media (hover: hover) { .studio:hover { border-color: var(--line-2); box-shadow: var(--shadow-soft); transform: translateY(-2px); } }
 .foot-lang { all: unset; cursor: pointer; width: fit-content; font-size: 14.5px; color: var(--ink-2); }
 .foot-lang:hover { color: var(--ink); }
-.foot-lang[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.foot-lang[aria-current="page"] { color: var(--ink); font-weight: 600; }
 .foot-lang:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 .foot-base {
   width: var(--wrap); margin: 0 auto; padding: 22px 0 36px;
