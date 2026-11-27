@@ -463,7 +463,7 @@ kbd {
 }
 .plan h3 { font-size: 28px; }
 .plan-tag { margin-top: 6px; color: var(--muted); font-size: 15px; }
-.price { margin: 24px 0 22px; display: flex; align-items: baseline; gap: 4px; }
+.price { margin: 24px 0 6px; display: flex; align-items: baseline; gap: 4px; }
 .price b { font: 560 46px/1 var(--serif); letter-spacing: -0.01em; }
 .price span { color: var(--muted); }
 .plan .btn { width: 100%; }
@@ -471,12 +471,14 @@ kbd {
 .plan li { display: flex; gap: 10px; align-items: flex-start; }
 .plan li .ic { width: 17px; height: 17px; margin-top: 2px; color: #3f9b6c; stroke-width: 2.2; }
 .plan li.dev { padding-left: 27px; color: var(--muted); font-style: italic; }
+.price-ars { margin: 0 0 20px; color: var(--muted); font-size: 13.5px; }
 .plan-featured { border: 1.5px solid #cfa6ad; box-shadow: 0 30px 60px -36px rgb(154 85 96 / 0.45); }
 .soon {
   position: absolute; top: 28px; right: 28px;
   padding: 5px 10px; border-radius: 999px;
-  background: #f4efe9; color: var(--ink-2); font-size: 12px; font-weight: 600;
+  background: #f4efe9; color: var(--ink-2); font-size: 12px; font-weight: 600; text-decoration: none;
 }
+a.soon:hover { background: #efe4dc; }
 
 /* ───────────────────────────────── FAQ ───────────────────────────────── */
 .faq { padding: clamp(60px, 8vw, 110px) 0; background: var(--bg-2); border-block: 1px solid var(--line); }
