@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://app.nidoestudio.ar/api/:path*" }
+  ],
+  "redirects": [
+    { "source": "/fundadores", "destination": "https://app.nidoestudio.ar/fundadores", "permanent": false },
+    { "source": "/", "has": [{ "type": "query", "key": "fundador" }], "destination": "https://app.nidoestudio.ar/", "permanent": false },
+    { "source": "/", "has": [{ "type": "query", "key": "billing" }], "destination": "https://app.nidoestudio.ar/", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] }
+  ]
+}

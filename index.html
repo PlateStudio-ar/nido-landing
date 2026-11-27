@@ -2,6 +2,14 @@
 <html lang="es-AR">
   <head>
     <meta charset="utf-8" />
+    <script>
+      // La landing vive en nidoestudio.ar: la copia vieja de GitHub Pages redirige sola, y los links de la app (fundadores, confirmación de cuenta) van a app.nidoestudio.ar.
+      (function () {
+        var l = location, h = l.hash || "", q = l.search || "";
+        if (/github\.io$/.test(l.hostname)) { l.replace("https://nidoestudio.ar" + l.pathname.replace(/^\/nido-landing/, "") + q + h); return; }
+        if (/access_token=|type=recovery|type=signup|error_description=/.test(h) || /[?&](fundador|billing)=/.test(q)) l.replace("https://app.nidoestudio.ar/" + q + h);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n="meta.title">Nido · Donde crece lo que aprendés</title>
     <meta name="description" data-i18n-content="meta.desc" content="Nido ordena tu carrera: materias, apuntes, entregas, parciales y fichas de repaso en una sola app. Descargala gratis para Windows o usala desde el navegador." />
@@ -9,7 +17,9 @@
     <meta property="og:title" content="Nido · Donde crece lo que aprendés" />
     <meta property="og:description" content="Materias, apuntes, entregas, parciales y fichas en una sola app para estudiar." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/og.jpg" />
+    <meta property="og:image" content="https://nidoestudio.ar/assets/og.jpg" />
+    <meta property="og:url" content="https://nidoestudio.ar/" />
+    <link rel="canonical" href="https://nidoestudio.ar/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/nido.png" />
     <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
@@ -18,7 +28,7 @@
     <script>document.documentElement.classList.add("js");</script>
     <script src="i18n.js?v=6"></script>
   </head>
-  <body data-download="https://github.com/PlateStudio-ar/nido-landing/releases/latest/download/Nido-Setup.exe" data-web="https://nido-rho-gules.vercel.app/">
+  <body data-download="https://github.com/PlateStudio-ar/nido-landing/releases/latest/download/Nido-Setup.exe" data-web="https://app.nidoestudio.ar/">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
       <defs>
         <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
@@ -73,7 +83,7 @@
               <button role="menuitemradio" data-set-lang="pt" aria-checked="false">Português</button>
             </div>
           </div>
-          <a class="link-quiet" data-web href="https://nido-rho-gules.vercel.app/" data-i18n="nav.web">Abrir en la web</a>
+          <a class="link-quiet" data-web href="https://app.nidoestudio.ar/" data-i18n="nav.web">Abrir en la web</a>
           <a class="btn btn-dark btn-sm" data-primary href="#descargar"><svg class="ic"><use href="#i-download" /></svg><span data-primary-label>Descargar</span></a>
         </div>
       </div>
@@ -92,7 +102,7 @@
           <p class="hero-sub" data-hero data-i18n="hero.sub">Materias, apuntes, entregas y parciales, ordenados como los necesitás para estudiar. Cada vez que abrís Nido, ya sabés por dónde arrancar.</p>
           <div class="hero-actions" data-hero>
             <a class="btn btn-dark btn-lg" data-primary href="#descargar"><svg class="ic"><use href="#i-download" /></svg><span data-primary-label>Descargar para Windows</span></a>
-            <a class="btn btn-light btn-lg" data-secondary data-web href="https://nido-rho-gules.vercel.app/"><span data-secondary-label>Usar en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
+            <a class="btn btn-light btn-lg" data-secondary data-web href="https://app.nidoestudio.ar/"><span data-secondary-label>Usar en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
           </div>
           <p class="hero-note" data-hero data-platform-note>Gratis · Windows 10 y 11 · En Mac, desde el navegador</p>
         </div>
@@ -263,7 +273,7 @@
             <div class="dl-icon"><svg class="ic"><use href="#i-globe" /></svg></div>
             <h3 data-i18n="dl.web.t">Mac y navegador</h3>
             <p data-i18n="dl.web.d">Desde Chrome, Safari, Edge o Firefox.</p>
-            <a class="btn btn-light btn-lg" data-web href="https://nido-rho-gules.vercel.app/"><span data-i18n="dl.web.b">Abrir Nido en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
+            <a class="btn btn-light btn-lg" data-web href="https://app.nidoestudio.ar/"><span data-i18n="dl.web.b">Abrir Nido en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
             <small data-i18n="dl.web.s">Mismas materias, apuntes y fichas que en la app de Windows.</small>
           </article>
         </div>
@@ -294,7 +304,7 @@
             <span class="soon" data-i18n="p.soon">Pagos muy pronto</span>
             <h3>Plus</h3><p class="plan-tag" data-i18n="p.plus.tag">Para estudiar sin techos</p>
             <p class="price"><b>US$3</b><span data-i18n="p.month">/mes</span></p>
-            <a class="btn btn-light" data-web href="https://nido-rho-gules.vercel.app/" data-i18n="p.notify">Anotarme desde la app</a>
+            <a class="btn btn-light" data-web href="https://app.nidoestudio.ar/" data-i18n="p.notify">Anotarme desde la app</a>
             <ul>
               <li><svg class="ic"><use href="#i-check" /></svg><span data-i18n="p.plus.1">Todo lo del plan Gratis</span></li>
               <li><svg class="ic"><use href="#i-check" /></svg><span data-i18n="p.plus.2">Carreras sin límite y hasta 10 materias activas</span></li>
@@ -307,7 +317,7 @@
             <span class="soon" data-i18n="p.soon">Pagos muy pronto</span>
             <h3>Pro</h3><p class="plan-tag" data-i18n="p.pro.tag">Para los que estudian en serio</p>
             <p class="price"><b>US$9</b><span data-i18n="p.month">/mes</span></p>
-            <a class="btn btn-light" data-web href="https://nido-rho-gules.vercel.app/" data-i18n="p.notify">Anotarme desde la app</a>
+            <a class="btn btn-light" data-web href="https://app.nidoestudio.ar/" data-i18n="p.notify">Anotarme desde la app</a>
             <ul>
               <li><svg class="ic"><use href="#i-check" /></svg><span data-i18n="p.pro.1">Todo lo del plan Plus</span></li>
               <li><svg class="ic"><use href="#i-check" /></svg><span data-i18n="p.pro.2">Materias activas sin límite</span></li>
@@ -341,7 +351,7 @@
         <h2 id="close-h" data-reveal data-i18n="close.title">Tu próxima sesión<br /><em>empieza acá.</em></h2>
         <div class="hero-actions" data-reveal>
           <a class="btn btn-dark btn-lg" data-primary href="#descargar"><svg class="ic"><use href="#i-download" /></svg><span data-primary-label>Descargar para Windows</span></a>
-          <a class="btn btn-light btn-lg" data-secondary data-web href="https://nido-rho-gules.vercel.app/"><span data-secondary-label>Usar en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
+          <a class="btn btn-light btn-lg" data-secondary data-web href="https://app.nidoestudio.ar/"><span data-secondary-label>Usar en la web</span><svg class="ic"><use href="#i-arrow" /></svg></a>
         </div>
       </section>
     </main>
@@ -357,7 +367,7 @@
           </a>
         </div>
         <nav class="foot-col" data-i18n-aria="foot.product" aria-label="Producto"><h4 data-i18n="foot.product">Producto</h4><a href="#recorrido" data-i18n="foot.tour">Recorrido</a><a href="#organiza" data-i18n="nav.features">Funciones</a><a href="#planes" data-i18n="nav.plans">Planes</a><a href="#preguntas" data-i18n="foot.faq">Preguntas</a></nav>
-        <nav class="foot-col" data-i18n-aria="foot.use" aria-label="Usar Nido"><h4 data-i18n="foot.use">Usar Nido</h4><a data-download href="https://github.com/PlateStudio-ar/nido-landing/releases/latest/download/Nido-Setup.exe" data-i18n="cta.win">Descargar para Windows</a><a data-web href="https://nido-rho-gules.vercel.app/" data-i18n="nav.web">Abrir en la web</a></nav>
+        <nav class="foot-col" data-i18n-aria="foot.use" aria-label="Usar Nido"><h4 data-i18n="foot.use">Usar Nido</h4><a data-download href="https://github.com/PlateStudio-ar/nido-landing/releases/latest/download/Nido-Setup.exe" data-i18n="cta.win">Descargar para Windows</a><a data-web href="https://app.nidoestudio.ar/" data-i18n="nav.web">Abrir en la web</a></nav>
         <div class="foot-col"><h4 data-i18n="foot.lang">Idioma</h4>
           <button class="foot-lang" data-set-lang="es">Español</button><button class="foot-lang" data-set-lang="en">English</button><button class="foot-lang" data-set-lang="pt">Português</button>
         </div>
